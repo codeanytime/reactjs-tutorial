@@ -2,6 +2,8 @@ import React from 'react'
 import Button from "@atlaskit/button"
 import styled, { css } from "styled-components";
 import CheckIcon from '@atlaskit/icon/glyph/check';
+import EditorEditIcon from '@atlaskit/icon/glyph/editor/edit'
+import TrashIcon from '@atlaskit/icon/glyph/trash'
 
 const ButtonStyled = styled(Button)`
     margin-top: 5px;
@@ -40,6 +42,10 @@ export default function Todo({ todo, onCheckBtnClick }) {
                 <span className="check-icon" onClick={() => onCheckBtnClick(todo.id)}>
                     <CheckIcon primaryColor='#4fff4f'/>
                 </span>)
+                || (todo.isCompleted  && (<span>
+                    <EditorEditIcon primaryColor='#DD0000'/>
+                    <TrashIcon primaryColor='#DD0000' />
+                    </span>))
             }>
                 {todo.name}
             </ButtonStyled>
