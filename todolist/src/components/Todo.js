@@ -31,21 +31,22 @@ const ButtonStyled = styled(Button)`
     }
 `
 
-export default function Todo({ todo, onCheckBtnClick }) {
+
+export default function Todo({ todo, onCheckBtnClick , onCheckRemoveClick}) {
     return (
         <>
             <ButtonStyled
             isCompleted={todo.isCompleted}
             shouldFitContainer
             iconAfter={
-                !todo.isCompleted && (
+                (!todo.isCompleted && (
                 <span className="check-icon" onClick={() => onCheckBtnClick(todo.id)}>
                     <CheckIcon primaryColor='#4fff4f'/>
-                </span>)
-                || (todo.isCompleted  && (<span>
+                </span>))
+                || (todo.isCompleted  && (<div>
                     <EditorEditIcon primaryColor='#DD0000'/>
-                    <TrashIcon primaryColor='#DD0000' />
-                    </span>))
+                    <span onClick={() => onCheckRemoveClick(todo.id)}><TrashIcon primaryColor='#DD0000' /></span>
+                    </div>))
             }>
                 {todo.name}
             </ButtonStyled>

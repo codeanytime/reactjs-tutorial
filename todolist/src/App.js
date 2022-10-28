@@ -34,6 +34,14 @@ function App() {
     setTodoList(prevState => prevState.map(todo => todo.id === id ? {...todo, isCompleted: true} : todo));
   }, [])
 
+  const onCheckRemoveClick = useCallback((id) => {
+    console.log("remove click" + id);
+    let updateTodo = [...todoList];
+    updateTodo.splice(id, 1);
+    setTodoList(updateTodo);
+    localStorage.setItem(TODO_APP_STORAGE_KEY, JSON.stringify(updateTodo));
+  }, [todoList])
+
   return (
     <>
         <h1>Danh sách việc cần làm</h1>
@@ -45,7 +53,7 @@ function App() {
             } css={{padding: "2px 4px 2px"}
           } value={textInput} onChange={onTextInputChange}>
         </Textfield>
-        <TodoList todoList={todoList} onCheckBtnClick={onCheckBtnClick}/>
+        <TodoList todoList={todoList} onCheckBtnClick={onCheckBtnClick} onCheckRemoveClick={onCheckRemoveClick}/>
     </>
   );
 }
