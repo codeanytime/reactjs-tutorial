@@ -15,6 +15,7 @@ function ExampleFunc() {
         document.title = `you click ${count} times`;
         console.log('Effect')
 
+        // nen dung clean up function dat trong return cua useEffect
         return () => {
             console.log("Clean up function");
         }
